@@ -48,7 +48,7 @@
     Result: 
 
     <p align="left">
-    <img src="image-5.png" width="500">
+    <img src="image-1.png" width="500">
     </p>
 
     - T2* (time domain) = 85.46 ± 0.94 ns
@@ -70,7 +70,7 @@
         *  Confirmed by scanning the fit window below: $T_2^*$ swings wildly window-to-window; $f_{\rm IF}$ (peak position, not width) stays stable.
 
         <p align="left">
-        <img src="image-1.png" width="700">
+        <img src="image-2.png" width="700">
         </p>
 
     * Flat line expected, downward trend seen: a reliable method would give the same $T_2^*$ regardless of where the window starts but instead it drifts steadily from ~28 ns to ~17 ns, the signature of a structurally questionable method, not noise.
@@ -96,6 +96,11 @@
     * background subtraction via moving-average high-pass filter (`SMOOTH_WIDTH=12` pts = 60 ns, must stay below one Rabi period)
     * $f_{\rm Rabi}$ from the FFT peak of the background-subtracted signal
     * π/π-2 found independently via time-domain (primary) and cross-checked against the FFT-derived analytic values
+    * **Fit model for the on-resonance signal**: after background subtraction the constant offset $\tfrac{1}{2}$ is removed from $\sin^2(\Omega_R\tau)=\tfrac{1}{2}(1-\cos(2\Omega_R\tau))$, leaving a signal that oscillates around zero:
+
+$$S_{\rm hpf}(\tau) = A\cos(\Omega_R\tau + \phi)\,e^{-\tau/T_R}$$
+
+A damped **cosine** (not sin²) is therefore the correct model for the background-subtracted signal — it crosses zero and goes negative at every π pulse, which a sin² (always positive) cannot do. $f_R$ and $T_R$ are fixed from the FFT and `T_RABI_BEST` respectively; only $A$ and $\phi$ are fit.
 
 - **Result**: **$f_{\rm Rabi} = $ 20 MHz, $\tau_{\pi/2} = $ 25 ns, $\tau_\pi = $ 50 ns**
 
@@ -105,7 +110,7 @@
 
 
     <p align="left">
-    <img src="image-2.png" width="800">
+    <img src="image-3.png" width="800">
     </p>
         
 
@@ -123,14 +128,18 @@
 
 - **Method**: 
     * Hilbert envelope of the band-pass-filtered on-resonance signal, fit to a single exponential over a 2D grid of candidate (start, end) windows (same approach as the $T_2^*$ window scan)
-    * best window chosen by minimum residual among windows within 5 ns of the grid median. Cross-checked against an independent direct fit of the raw signal to a damped $\cos$ with $f_{\rm Rabi}$ fixed. The two estimates are combined into `T_RABI_BEST`.
+    * best window chosen by minimum residual among windows within 5 ns of the grid median
+    * Cross-checked against an independent direct fit of the **background-subtracted** signal to a damped cosine with $f_{\rm Rabi}$ fixed:
 
+$$S_{\rm hpf}(\tau) = A\cos(\Omega_R\tau + \phi)\,e^{-\tau/T_R}$$
+
+The cosine model is used here for the same reason as in Section 3: background subtraction removes the constant offset, leaving a signal that oscillates around zero. $T_R$ is the single free decay parameter here (unlike Section 3 where it was fixed); only after combining both estimates is `T_RABI_BEST` set and fixed everywhere downstream.
 
 - **Result**: $T_{\rm Rabi} =$ 60 ns
 
     **Method comparison to find T_BEST**    
     <p align="left">
-    <img src="image-8.png" width="500">
+    <img src="image-4.png" width="500">
     </p>
 
     ── Best estimate 
@@ -140,7 +149,7 @@
 
     **Results with T_BEST**
     <p align="left">
-    <img src="image-9.png" width="700">
+    <img src="image-5.png" width="700">
     </p>
 
    
@@ -174,7 +183,7 @@
     * residual RMS not very high on resonance
 
     <p align="left">
-    <img src="image-10.png" width="1200">
+    <img src="image-6.png" width="1200">
     </p>
 
 - **Weaknesses / open questions**: 
@@ -202,11 +211,11 @@
 - **Result**: origin fit $a = $ 47.7 ± 0.3, free fit $a = $ 43.6 ± 0.3, $b = $ (7.0 ± 0.6) ns
 
     <p align="left">
-    <img src="image-11.png" width="1000">
+    <img src="image-7.png" width="1000">
     </p>
 
      <p align="left">
-    <img src="image-12.png" width="300">
+    <img src="image-8.png" width="300">
     </p>
 
     * Clear linear dependency, however a not entirely const over power sweep
@@ -217,8 +226,16 @@
     * Maybe different resonant field since measurement was done on different date
 
 ---
+### Summary 
 
+<p align="left">
+<img src="image-9.png" width="1000">
+</p>
+
+---
 ### General open questions
+
+
 
 - Resonant field set on eye, $T_2^*$, $f_{\rm Rabi}$, and π/π-2 calibration are all anchored to one chosen dataset
 - cross-dataset reproducibility untested because this was already the best dataset available
@@ -229,4 +246,4 @@
 ---
 ### References
 - https://www.nature.com/articles/s41467-025-63241-4#Sec10 (Supplementary Info: https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-63241-4/MediaObjects/41467_2025_63241_MOESM1_ESM.pdf) 
-- 
+-
