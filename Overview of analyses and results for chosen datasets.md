@@ -220,6 +220,8 @@
 
 ### General open questions
 
-- Resonant field is set on eye, $T_2^*$, $f_{\rm Rabi}$, and π/π-2 calibration are all anchored to one chosen dataset; cross-dataset reproducibility is untested.
+- Resonant field set on eye, $T_2^*$, $f_{\rm Rabi}$, and π/π-2 calibration are all anchored to one chosen dataset
+- cross-dataset reproducibility untested because this was already the best dataset available
 - No uncertainty is propagation yet from $B_0^{\rm res}$ or $T_2^*$ into quantities computed downstream of them.
-- T_Rabi important at all? 
+- T_Rabi important at all?
+- How sensitive is T2* on different resonant fields? 
