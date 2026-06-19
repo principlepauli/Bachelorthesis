@@ -123,10 +123,10 @@
 
 - **Method**: 
     * Hilbert envelope of the band-pass-filtered on-resonance signal, fit to a single exponential over a 2D grid of candidate (start, end) windows (same approach as the $T_2^*$ window scan)
-    * best window chosen by minimum residual among windows within 5 ns of the grid median. Cross-checked against an independent direct fit of the raw signal to a damped $\sin^2$ with $f_{\rm Rabi}$ fixed. The two estimates are combined into `T_RABI_BEST`.
+    * best window chosen by minimum residual among windows within 5 ns of the grid median. Cross-checked against an independent direct fit of the raw signal to a damped $\cos$ with $f_{\rm Rabi}$ fixed. The two estimates are combined into `T_RABI_BEST`.
 
 
-- **Result**: $T_{\rm Rabi} = $ 60 ns
+- **Result**: $T_{\rm Rabi} =$ 60 ns
 
     **Method comparison to find T_BEST**    
     <p align="left">
@@ -194,7 +194,7 @@
     - cross-check on the extraction: $f_{\rm Rabi}$ vs. $\sqrt P$ should be linear through the origin 
 
 - **Method**:
-    - $\tau_\pi$ via a per-power-row damped $\sin^2$ **fit**, no peak-finder since more robust, especially at low power where few points cover one period.
+    - $\tau_\pi$ via a per-power-row damped $\cos$ **fit**, no peak-finder since more robust, especially at low power where few points cover one period.
     - **Sequential seeding**: each row seeded with the *previous* (higher-power) row's fitted $f_R$. A single fixed guess fails becuase  $f_{\rm Rabi}$ varies severalfold across the range, and a bad guess can lock the fit onto the wrong period. Since $f_{\rm Rabi}$ varies smoothly, each neighbour is a good seed.
     - Both **origin-forced** ($\tau_\pi=a/\sqrt P$) and **free-intercept** ($\tau_\pi=a/\sqrt P+b$) fits run, so a real offset shows up as nonzero $b$ instead of being hidden.
     - $f_{\rm Rabi}$ vs. $\sqrt P$ checked independently as a cross-check.
