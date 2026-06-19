@@ -214,6 +214,7 @@
 - **Weaknesses / open questions**: 
     * the nonzero intercept's physical origin (fixed timing offset vs. some other systematic) is inferred from the shape of $f_{\rm Rabi}$ vs. $\sqrt P$, not directly/independently measured
     * only one dataset analysed, no repeat at a different day/power range to confirm the intercept is reproducible.
+    * Maybe different resonant field since measurement was done on different date
 
 ---
 
