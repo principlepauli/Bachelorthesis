@@ -224,4 +224,9 @@
 - cross-dataset reproducibility untested because this was already the best dataset available
 - No uncertainty is propagation yet from $B_0^{\rm res}$ or $T_2^*$ into quantities computed downstream of them.
 - T_Rabi important at all?
-- How sensitive is T2* on different resonant fields? 
+- How sensitive is T2* on different resonant fields?
+
+---
+### References
+- https://www.nature.com/articles/s41467-025-63241-4#Sec10 (Supplementary Info: https://static-content.springer.com/esm/art%3A10.1038%2Fs41467-025-63241-4/MediaObjects/41467_2025_63241_MOESM1_ESM.pdf) 
+- 
