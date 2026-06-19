@@ -22,7 +22,7 @@
 
 - **Expected**: a single, clearly identifiable field value where the Rabi chevron vertex sits (fastest oscillation, shortest π-pulse).
 - **Method**: visual identification from the chevron vertex; automated peak-finding on the field-integrated signal was attempted but failed
-- **Result**: $B_0^{\rm res} = $ 178.528 mT ( 6.97 % OL)
+- **Result**: $B_0^{\rm res} = $  178.551 mT  (6.9710 % OL)
 
 <p align="left">
   <img src="image.png" width="500">
@@ -51,9 +51,9 @@
     <img src="image-1.png" width="500">
     </p>
 
-    - T2* (time domain) = 85.46 ± 0.94 ns
-    - f_IF              = 108.4174 MHz
-    - Amplitude         = 21.032 mV
+    - T2* (time domain) = 85.87 ± 1.06 ns
+    - f_IF              = 109.1464 MHz
+    - Amplitude         = 21.203 mV
 
 - **Method (cross-check, FFT linewidth)**: 
     * Lorentzian fit to the FFT magnitude spectrum, $T_2^* = 1/(\pi\,\Delta f_{\rm FWHM})$
@@ -76,7 +76,7 @@
     * Flat line expected, downward trend seen: a reliable method would give the same $T_2^*$ regardless of where the window starts but instead it drifts steadily from ~28 ns to ~17 ns, the signature of a structurally questionable method, not noise.
     * Why it drifts: later start → shorter window → worse resolution ($\delta f\sim1/T_{\rm window}$) → artificially broadened peak → smaller fitted $T_2^*$, all sitting 3–5× below the trusted time-domain value (85 ns, dashed line).
 
-- **Result**: $T_2^* = $  **85.46 ± 0.94 ns** (time-domain, primary) — FFT and field-sweep cross-checks **failed** (resolution-limited; see Sec. 3.2 for the diagnosis)
+- **Result**: $T_2^* = $  **85.87 ± 1.06 ns** (time-domain, primary) — FFT and field-sweep cross-checks **failed** (resolution-limited; see Sec. 3.2 for the diagnosis)
 - **Weaknesses / open questions**: 
     * only one cross-check method (time-domain) actually works for this dataset
     * the FFT and field-sweep failures are explained by frequency resolution but not independently fixed/verified by another method
@@ -135,7 +135,7 @@ $$S_{\rm hpf}(\tau) = A\cos(\Omega_R\tau + \phi)\,e^{-\tau/T_R}$$
 
 The cosine model is used here for the same reason as in Section 3: background subtraction removes the constant offset, leaving a signal that oscillates around zero. $T_R$ is the single free decay parameter here (unlike Section 3 where it was fixed); only after combining both estimates is `T_RABI_BEST` set and fixed everywhere downstream.
 
-- **Result**: $T_{\rm Rabi} =$ 60 ns
+- **Result**: $T_{\rm Rabi} =$ 46.2 ns
 
     **Method comparison to find T_BEST**    
     <p align="left">
@@ -143,8 +143,9 @@ The cosine model is used here for the same reason as in Section 3: background su
     </p>
 
     ── Best estimate 
-  T_RABI_BEST = 59.3 ± 54.2 ns
-  (envelope grid: 32.3 ns,  direct fit: 86.3 ns)
+    T_RABI_BEST = 46.2 ± 202.0 ns
+    (envelope grid: 41.7 ns,  direct cosine fit: 50.7 ns)
+
 
 
     **Results with T_BEST**
@@ -157,7 +158,7 @@ The cosine model is used here for the same reason as in Section 3: background su
         
 - **Weaknesses / open questions**: 
     * Is it fair to combine the T_BEST just like that? !!Very high error but time consistent over window choice grid
-    * the on-resonance comparison plot (panel c of the 4-panel figure) shows the data plateauing well above the simulated curve beyond ~100 ns instead of decaying to baseline * residual background offset (raw, not background-subtracted signal is used there) or a second - Need to fix if T_Rabi time important at all, ask Toni)
+
 
 ---
 
